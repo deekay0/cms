@@ -1,0 +1,34 @@
+<%= form_for @company, :html => { :multipart => true } do |f| %>
+
+
+    <%= f.label :name, 'Company name' %>
+    <%= f.text_field :name %>
+
+    <%= f.label :description, 'Description' %>
+    <%= f.text_field :description %>
+
+    <%= f.label :shares, 'Number of shares to be sold' %>
+    <%= f.text_field :shares %>
+
+    <%= f.label :sellportion, 'And what portion of your company do those shares represent?' %>
+    <%= f.text_field :sellportion %>
+
+    <%= f.label :start_date, 'Start date' %>
+    <%= f.text_field :start_date %>
+
+    <%= f.label :end_date, 'End date' %>
+    <%= f.text_field :end_date %>
+
+    <%= f.label :end_date, 'Image' %>
+    <%= f.file_field :avatar %>
+
+    <%= f.label :end_date, 'End date' %>
+    <%= f.text_field :end_date %>
+
+
+
+
+    <!--, :, :start_date, :video, :thumbnail-->
+    <br>
+    <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -16,6 +16,8 @@ gem "capybara", ">= 2.0.2", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 gem "bootstrap-sass", ">= 2.3.0.0"
 gem "devise", ">= 2.2.3"
+gem "omniauth"
+gem "omniauth-facebook"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.4"
@@ -28,3 +30,5 @@ gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri
 
 # Configuration File
 gem 'rails_config'
+
+gem 'paperclip'

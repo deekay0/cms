@@ -11,7 +11,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017180539) do
+ActiveRecord::Schema.define(:version => 20130319064653) do
+
+  create_table "bids", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "shares"
+    t.float    "price"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bids", ["user_id", "company_id"], :name => "index_bids_on_user_id_and_company_id"
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
+    t.integer  "shares"
+    t.float    "sellportion"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "video"
+    t.string   "thumbnail"
+  end
+
+  create_table "follow_companies", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "follow_companies", ["company_id"], :name => "index_follow_companies_on_company_id"
+  add_index "follow_companies", ["user_id", "company_id"], :name => "index_follow_companies_on_user_id_and_company_id"
+  add_index "follow_companies", ["user_id"], :name => "index_follow_companies_on_follower_id"
+
+  create_table "founders", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -40,6 +80,9 @@ ActiveRecord::Schema.define(:version => 20121017180539) do
     t.string   "name"
     t.string   "customer_id"
     t.string   "last_4_digits"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

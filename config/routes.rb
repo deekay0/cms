@@ -7,10 +7,13 @@ RailsStripeMembershipSaas::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users, :controllers => { :registrations => 'registrations' }
+  devise_for :users, :controllers => { :registrations => 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do
+    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     put 'update_plan', :to => 'registrations#update_plan'
     put 'update_card', :to => 'registrations#update_card'
   end
   resources :users
+  resources :bids
+  resources :companies
 end

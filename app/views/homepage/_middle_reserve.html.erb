@@ -1,6 +1,10 @@
-<div class="big_wrapper">
-  <div class="wrapper center" id="middle_reserve">
-    <h2><%= Settings.ships %></h2>
-    <a href="/preorder/checkout" class="blue_button reserve"><%= Settings.middle_reserve_text %></a>
-  </div>
-</div>
+    <%= form_for(@bid, remote:true) do |f| %>
+
+        <%= f.label :shares, 'How many shares would you like?' %>
+        <%= f.text_field :shares %>
+
+        <%= f.label :price, 'And what do you offer to pay for those?' %>
+        <%= f.text_field :price %>
+        <br>
+        <%= f.submit "Bid", class: "btn btn-large btn-primary" %>
+    <% end %>
