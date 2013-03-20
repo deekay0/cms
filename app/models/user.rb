@@ -12,16 +12,18 @@ class User < ActiveRecord::Base
   before_save :update_stripe
   before_destroy :cancel_subscription
 
+  #a user can found many companies
+  has_many :found_companies
+  has_many :companies, through: :found_companies
+
   #a user can bid on many companies
-
-
-  #a user can follow many companies
   has_many :bids
   has_many :bid_companies, through: :bids, source: :company
 
   #a user can follow many companies
-  has_many :follow_companies, dependent: :destroy
-  has_many :followed_companies, through: :follow_companies, source: :company
+  has_and_belongs_to_many :companies, join_table: :follow_companies
+  #has_many :follow_companies, dependent: :destroy
+  #has_many :followed_companies, through: :follow_companies, source: :company
 
   def update_plan(role)
     self.role_ids = []

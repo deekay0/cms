@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319064653) do
+ActiveRecord::Schema.define(:version => 20130320204351) do
 
   create_table "bids", :force => true do |t|
     t.integer  "user_id"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130319064653) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "description"
     t.integer  "shares"
     t.float    "sellportion"
@@ -35,9 +35,17 @@ ActiveRecord::Schema.define(:version => 20130319064653) do
     t.datetime "end_date"
     t.string   "video"
     t.string   "thumbnail"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
-  create_table "follow_companies", :force => true do |t|
+  create_table "follow_companies", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "company_id"
     t.datetime "created_at", :null => false
@@ -48,10 +56,14 @@ ActiveRecord::Schema.define(:version => 20130319064653) do
   add_index "follow_companies", ["user_id", "company_id"], :name => "index_follow_companies_on_user_id_and_company_id"
   add_index "follow_companies", ["user_id"], :name => "index_follow_companies_on_follower_id"
 
-  create_table "founders", :force => true do |t|
+  create_table "found_companies", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "found_companies", ["user_id", "company_id"], :name => "index_found_companies_on_user_id_and_company_id", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -82,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20130319064653) do
     t.string   "last_4_digits"
     t.string   "provider"
     t.string   "uid"
-    t.string   "type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -5,10 +5,13 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    else
-      can :view, :silver if user.has_role? :silver
-      can :view, :gold if user.has_role? :gold
-      can :view, :platinum if user.has_role? :platinum
+    elsif user.has_role? :investor
+      can :view, :investor
+      can :read, :company
+    elsif user.has_role? :founder
+      can :manage, :company
+      can :view, :founder
     end
+
   end
 end
