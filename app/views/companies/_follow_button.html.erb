@@ -1,0 +1,4 @@
+<%=  form_for current_user.follow_companies.build(company_id: @company.id), remote:true do |f| %>
+    <div><%= f.hidden_field :company_id %></div>
+    <%= f.submit "Follow", class: "btn pull-right" %>
+<% end %>

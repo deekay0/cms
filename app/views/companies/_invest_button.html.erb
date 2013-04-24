@@ -1,0 +1,6 @@
+<%=  form_for current_user.bids.build(company_id: @company.id), remote:true do |f| %>
+    <div><%= f.hidden_field :company_id %></div>
+    <%= f.label :price, "Amount" %>
+    <%= f.text_field :price, class:"input-mini pull-left" %>
+    <%= f.submit "Invest", class: "btn pull-left" %>
+<% end %>

@@ -252,7 +252,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip
   quiet_assets (>= 1.0.1)
-  rails (= 3.2.13.rc1)
+  rails
   rails_config
   rolify (>= 3.2.0)
   rspec-rails (>= 2.12.2)

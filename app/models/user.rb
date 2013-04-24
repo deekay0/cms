@@ -7,23 +7,25 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :provider, :uid
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :provider, :uid, :avatar
   attr_accessor :stripe_token, :coupon
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+
   before_save :update_stripe
   before_destroy :cancel_subscription
 
   #a user can found many companies
-  has_many :found_companies
-  has_many :companies, through: :found_companies
+  has_one :found_company
+  has_one :company, through: :found_company
 
   #a user can bid on many companies
   has_many :bids
   has_many :bid_companies, through: :bids, source: :company
 
   #a user can follow many companies
-  has_and_belongs_to_many :companies, join_table: :follow_companies
-  #has_many :follow_companies, dependent: :destroy
-  #has_many :followed_companies, through: :follow_companies, source: :company
+  has_many :follow_companies, dependent: :destroy
+  has_many :followed_companies, through: :follow_companies, source: :company
 
   def update_plan(role)
     self.role_ids = []
@@ -108,5 +110,19 @@ class User < ActiveRecord::Base
     UserMailer.expire_email(self).deliver
     destroy
   end
-  
+
+  def following?(company)
+    follow_companies.find_by_company_id(company.id)
+  end
+
+  def follow!(company)
+    follow_companies.create! company_id:company.id
+  end
+
+  def unfollow!(company)
+    comp = follow_companies.find_by_company_id(company.id)
+    puts "company.id: #{company.id}"
+    puts "company: #{company}"
+    comp.destroy
+  end
 end

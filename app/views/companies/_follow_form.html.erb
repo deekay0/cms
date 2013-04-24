@@ -1,0 +1,7 @@
+   <div id="follow_form">
+      <% if current_user.following?(@company) %>
+          <%= render 'unfollow_button' %>
+      <% else %>
+          <%= render 'follow_button' %>
+      <% end %>
+    </div>

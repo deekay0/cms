@@ -14,6 +14,7 @@ RailsStripeMembershipSaas::Application.routes.draw do
     put 'update_card', :to => 'registrations#update_card'
   end
   resources :users
-  resources :bids
+  resources :bids, only: [:create, :destroy]
   resources :companies
+  resources :follow_companies, only: [:create, :destroy]
 end

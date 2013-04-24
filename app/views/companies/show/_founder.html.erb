@@ -1,0 +1,25 @@
+
+  <li>
+    <div class="thumbnail pull-left">
+        <!--<img src="http://placehold.it/900x600" class="image">-->
+        <%= link_to (image_tag founder.avatar.url(:medium)), founder %>
+    </div>
+    <h4>
+      <%= link_to founder.name, founder %>
+    </h4>
+    <p>
+      <%= founder.accomplishments %>
+    </p>
+  </li>
+
+<li class="span3">
+  <div class="thumbnail">
+    <h4>
+      <%= link_to company.name, company %>
+    </h4>
+    <%= link_to (image_tag company.avatar.url(:medium)), company %>
+    <p>
+      <%= company.description %>
+    </p>
+  </div>
+</li>
