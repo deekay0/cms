@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325232624) do
+ActiveRecord::Schema.define(:version => 20130529050535) do
 
   create_table "bids", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20130325232624) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "wide_image_file_name"
+    t.string   "wide_image_content_type"
+    t.integer  "wide_image_file_size"
+    t.datetime "wide_image_updated_at"
   end
 
   create_table "follow_companies", :force => true do |t|
@@ -89,6 +93,11 @@ ActiveRecord::Schema.define(:version => 20130325232624) do
     t.string   "last_4_digits"
     t.string   "provider"
     t.string   "uid"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "accomplishments"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,4 +1,4 @@
 <% follow_company = current_user.follow_companies.find_by_company_id(@company) %>
-<%= form_for(follow_company, :html => { :method => :delete }, remote:true) do |f| %>
+<%= form_for(follow_company, :html => { :method => :delete }, remote:true, class: "invest-form") do |f| %>
     <%= f.submit "Unfollow", class: "btn pull-right" %>
 <% end %>

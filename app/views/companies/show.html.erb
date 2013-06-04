@@ -1,41 +1,42 @@
-<div class="container-fluid container-fluid-1">
-  <div class="container container-1">
-    <div class="row-fluid">
-          <span class="span12">
-            <div class="row-fluid">
-              <span class="span3">
-                <li class="span4">
-                  <div class="thumbnail">
-                    <!--<img src="http://placehold.it/900x600" class="image">-->
-                    <%= image_tag @company.avatar.url(:medium) %>
-                  </div>
-                </li>
-              </span>
-              <span class="span9">
-                <h1 class="heading"><%= @company.name %></h1>
-                <p><%= @company.description %></p>
-              </span>
+<%= stylesheet_link_tag params[:controller] %>
+<% content_for :company_image_wide do %>
+    <div class="hero-unit" align="center">
+      <%= image_tag @company.wide_image.url(:large) %>
+    </div>
+    <div class="container">
+      <div class="row-fluid">
+             <span class="span4 titleImageCaption">
+                        <h1 class="heading">
+                          <%= @company.name %>
+                          <small><%= @company.description %></small>
+                        </h1>
+             </span>
+      </div>
+    </div>
+    <header class="navbar secondary-navbar">
+      <div class="navbar-inner secondary-navbar-inner">
+        <div class="container">
+          <div class="row-fluid">
+            <div class="span12">
+                <%= render 'invest_form' %>
+                <%= render 'follow_form' %>
             </div>
-          </span>
+          </div>
+        </div>
+      </div>
+    </header>
     </div>
-  </div>
-  <div class="container">
-    <div class="row-fluid">
-          <span class="span12">
+<% end %>
 
-            <%= render 'invest_form'  %>
 
-            <%= render 'follow_form'  %>
-          </span>
-    </div>
-  </div>
-</div>
+
 <div class="container container-2">
   <div class="row-fluid">
         <span class="span4">
           <div class="page-header">
-            <h1>Who <small>The Team</small>
-            </h1>
+            <h2>Who
+              <small>The Team</small>
+            </h2>
           </div>
           <ul>
             <%= render :partial => "companies/show/founder", :collection => @founders %>
@@ -43,10 +44,13 @@
         </span>
         <span class="span8">
           <div class="page-header">
-            <h1>What <small>The Product</small>
-            </h1>
+            <h2>What
+              <small>The Product</small>
+            </h2>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam convallis quam at justo condimentum condimentum. Fusce arcu felis, fringilla nec varius a, rhoncus a libero. Donec ut ligula vitae leo pellentesque varius.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam convallis quam at justo condimentum
+            condimentum. Fusce arcu felis, fringilla nec varius a, rhoncus a libero. Donec ut ligula vitae leo
+            pellentesque varius.</p>
           <img src="http://placehold.it/850x300"
                class="image">
         </span>
